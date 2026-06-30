@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BudgetFlow</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="header">
+  <h1>💸 BudgetFlow</h1>
+  <button id="darkModeToggle">🌙</button>
+</header>
+
+<section class="cards">
+  <div class="card balance"><h3>Total Balance</h3><p id="balanceVal">₱0</p></div>
+  <div class="card income"><h3>Income</h3><p id="incomeVal">₱0</p></div>
+  <div class="card expense"><h3>Expenses</h3><p id="expenseVal">₱0</p></div>
+  <div class="card savings"><h3>Savings</h3><p id="savingsVal">₱0</p></div>
+</section>
+
+<!-- CHAT INPUT -->
+<section class="chat-section">
+  <h2>💬 Talk with BudgetFlow</h2>
+  <p class="chat-hint">Try: "Spent 250 on food from GCash" or "Received 5000 salary in BPI"</p>
+  <div class="chat-log" id="chatLog"></div>
+  <form id="chatForm">
+    <input type="text" id="chatInput" placeholder="Type a transaction..." autocomplete="off">
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<!-- ACCOUNTS -->
+<section class="accounts-section">
+  <h2>🏦 Accounts</h2>
+  <div class="accounts-list" id="accountsList"></div>
+  <form id="accountForm">
+    <input type="text" id="accountName" placeholder="Account name (e.g. GCash)" required>
+    <input type="number" id="accountBalance" placeholder="Starting balance" required>
+    <button type="submit">Add Account</button>
+  </form>
+</section>
+
+<!-- GOALS -->
+<section class="goals-section">
+  <h2>🎯 Savings Goals</h2>
+  <div class="goals-list" id="goalsList"></div>
+  <form id="goalForm">
+    <input type="text" id="goalName" placeholder="Goal name" required>
+    <input type="number" id="goalTarget" placeholder="Target amount" required>
+    <button type="submit">Add Goal</button>
+  </form>
+</section>
+
+<!-- CHARTS -->
+<section class="charts">
+  <div class="chart-box"><canvas id="categoryChart"></canvas></div>
+  <div class="chart-box"><canvas id="monthlyChart"></canvas></div>
+</section>
+
+<!-- TRANSACTIONS -->
+<section class="table-section">
+  <h2>📋 Transactions</h2>
+  <input type="text" id="searchInput" placeholder="Search transactions...">
+  <table>
+    <thead>
+      <tr><th>Description</th><th>Category</th><th>Account</th><th>Amount</th><th>Date</th><th>Action</th></tr>
+    </thead>
+    <tbody id="transactionTable"></tbody>
+  </table>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

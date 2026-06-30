@@ -1,0 +1,131 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Segoe UI', Arial, sans-serif; }
+
+body {
+  background: #f0f2f8;
+  color: #1e1e2d;
+  min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+body.dark { background: #11111f; color: #e8e8f0; }
+
+.header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 36px;
+  background: linear-gradient(120deg, #5f4bd6, #8b7af0);
+  color: white;
+  box-shadow: 0 6px 24px rgba(95,75,214,0.3);
+  position: sticky; top: 0; z-index: 10;
+}
+.header h1 { font-size: 22px; font-weight: 700; }
+#darkModeToggle {
+  background: rgba(255,255,255,0.18); border: none; font-size: 18px; cursor: pointer;
+  width: 40px; height: 40px; border-radius: 50%;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+#darkModeToggle:hover { transform: rotate(25deg) scale(1.1); background: rgba(255,255,255,0.32); }
+
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 28px 36px; }
+.card {
+  border-radius: 18px; padding: 24px; color: white;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative; overflow: hidden;
+}
+.card::after { content: ""; position: absolute; top: -30%; right: -20%; width: 120px; height: 120px; border-radius: 50%; background: rgba(255,255,255,0.12); }
+.card:hover { transform: translateY(-5px); box-shadow: 0 16px 34px rgba(0,0,0,0.18); }
+.card h3 { font-size: 13px; font-weight: 500; opacity: 0.85; letter-spacing: 0.4px; margin-bottom: 10px; text-transform: uppercase; }
+.card p { font-size: 28px; font-weight: 700; }
+.balance { background: linear-gradient(135deg, #2563eb, #60a5fa); }
+.income  { background: linear-gradient(135deg, #059669, #34d399); }
+.expense { background: linear-gradient(135deg, #dc2626, #f87171); }
+.savings { background: linear-gradient(135deg, #d97706, #fbbf24); }
+
+section.chat-section, section.accounts-section, section.goals-section, section.table-section {
+  background: white; margin: 0 36px 26px; padding: 26px; border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06); transition: background 0.4s ease;
+}
+body.dark section.chat-section, body.dark section.accounts-section, body.dark section.goals-section, body.dark section.table-section { background: #1a1a2e; }
+
+.chat-section h2, .accounts-section h2, .goals-section h2, .table-section h2 {
+  font-size: 17px; color: #5f4bd6; font-weight: 700; margin-bottom: 6px;
+}
+body.dark .chat-section h2, body.dark .accounts-section h2, body.dark .goals-section h2, body.dark .table-section h2 { color: #a99cf5; }
+.chat-hint { font-size: 13px; color: #8a8aa3; margin-bottom: 14px; }
+
+.chat-log { max-height: 220px; overflow-y: auto; margin-bottom: 14px; display: flex; flex-direction: column; gap: 8px; }
+.chat-bubble {
+  padding: 10px 14px; border-radius: 12px; font-size: 14px; max-width: 80%;
+  animation: fadeSlideIn 0.3s ease;
+}
+.chat-bubble.user { align-self: flex-end; background: linear-gradient(120deg, #5f4bd6, #8b7af0); color: white; }
+.chat-bubble.bot { align-self: flex-start; background: #f0f2f8; color: #1e1e2d; }
+body.dark .chat-bubble.bot { background: #232342; color: #e8e8f0; }
+
+#chatForm, #accountForm, #goalForm { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+#chatForm input, #accountForm input, #goalForm input {
+  padding: 12px 14px; border-radius: 12px; border: 1.5px solid #e2e4ed; flex: 1; min-width: 120px;
+  font-size: 14px; outline: none; background: transparent; color: inherit; transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+body.dark #chatForm input, body.dark #accountForm input, body.dark #goalForm input { border-color: #33334d; }
+#chatForm input:focus, #accountForm input:focus, #goalForm input:focus { border-color: #5f4bd6; box-shadow: 0 0 0 3px rgba(95,75,214,0.15); }
+#chatForm button, #accountForm button, #goalForm button {
+  background: linear-gradient(120deg, #5f4bd6, #8b7af0); color: white; border: none; padding: 12px 22px;
+  border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+#chatForm button:hover, #accountForm button:hover, #goalForm button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(95,75,214,0.4); }
+
+.accounts-list, .goals-list { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.account-item, .goal-item {
+  background: #f6f7fb; border-radius: 14px; padding: 14px 18px; min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.2s ease;
+}
+body.dark .account-item, body.dark .goal-item { background: #232342; }
+.account-item:hover, .goal-item:hover { transform: translateY(-3px); }
+.account-item h4, .goal-item h4 { font-size: 14px; margin-bottom: 6px; }
+.account-item p { font-size: 18px; font-weight: 700; color: #5f4bd6; }
+body.dark .account-item p { color: #a99cf5; }
+.goal-bar { height: 8px; background: #e2e4ed; border-radius: 6px; margin-top: 8px; overflow: hidden; }
+body.dark .goal-bar { background: #33334d; }
+.goal-bar-fill { height: 100%; background: linear-gradient(120deg, #5f4bd6, #8b7af0); transition: width 0.4s ease; }
+.goal-item small { display: block; margin-top: 6px; color: #8a8aa3; font-size: 12px; }
+
+.charts { display: flex; gap: 22px; padding: 0 36px 28px; flex-wrap: wrap; }
+.chart-box { flex: 1; min-width: 300px; height: 280px; background: white; border-radius: 18px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); transition: background 0.4s ease; }
+body.dark .chart-box { background: #1a1a2e; }
+
+#searchInput {
+  padding: 12px 14px; border-radius: 12px; border: 1.5px solid #e2e4ed; width: 100%;
+  margin-bottom: 14px; font-size: 14px; outline: none; background: transparent; color: inherit;
+}
+body.dark #searchInput { border-color: #33334d; }
+
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; padding: 14px 12px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; color: #8a8aa3; border-bottom: 2px solid #f0f0f5; }
+body.dark th { color: #7e7ea0; border-color: #2a2a40; }
+td { padding: 14px 12px; border-bottom: 1px solid #f5f5fa; font-size: 14px; }
+body.dark td { border-color: #232338; }
+tbody tr:hover { background: rgba(95,75,214,0.05); }
+body.dark tbody tr:hover { background: rgba(95,75,214,0.1); }
+.delete-btn { cursor: pointer; transition: transform 0.2s ease; }
+.delete-btn:hover { transform: scale(1.25) rotate(8deg); }
+
+.toast {
+  position: fixed; bottom: 24px; right: 24px; background: #1e1e2d; color: white;
+  padding: 14px 24px; border-radius: 12px; box-shadow: 0 10px 26px rgba(0,0,0,0.3);
+  font-size: 14px; opacity: 0; transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease; z-index: 100;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+@keyframes fadeSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 768px) {
+  .cards { grid-template-columns: repeat(2, 1fr); padding: 20px; }
+  section.chat-section, section.accounts-section, section.goals-section, section.table-section { margin: 0 20px 20px; }
+  .charts { padding: 0 20px 20px; }
+}
+@media (max-width: 480px) {
+  .cards { grid-template-columns: 1fr; }
+  .header h1 { font-size: 18px; }
+}
